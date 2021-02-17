@@ -16,11 +16,11 @@
       <table width="80%">
         <tr>
           <center><td>
-            <img id="player1Image" src="images/white.jpg" />
+            <img id="player1Image" src="images/output/white.png"/>
             <p id="player1Name"></p>
           </td></center>
           <center><td>
-            <img id="player2Image" src="images/white.jpg" />
+            <img id="player2Image" src="images/output/white.png"/>
             <p id="player2Name"></p>
           </td></center>
       </table>
@@ -45,8 +45,8 @@
     const ANIMATION_DURATION = 1500;
     const SLEEP_TIME = 1500;
 
-    const GRUPO_A = ["Rufino", "Pedro", "Everton ", "Adriano", "Samir", "Seu Leo", "Jobson", "Almir", "Renato", "Anderson"]
-    const GRUPO_B = ["Wallace", "Lino", "Raimundo ", "Tam", "Sonic", "Ronaldo ", "Vertinho", "Kliver", "Bolinha", "Bruno"]
+    const GRUPO_A = ["Rufino", "Pedro", "Everton", "Adriano", "Samir", "Leo", "Jobson", "Almir", "Renato", "Anderson"]
+    const GRUPO_B = ["Wallace", "Lino", "Raimundo", "Tam", "Sonic", "Ronaldo", "Vertinho", "Kliver", "Bolinha", "Bruno"]
 
     const player1Animation = anime({
       targets: '#player1Image',
@@ -73,15 +73,13 @@
     }
 
     function showPlayer1(playerName) {
-      // TODO
-      document.querySelector("#player1Image").src = "images/" + "profile.jpg";
+      document.querySelector("#player1Image").src = "images/output/" + playerName.toLowerCase() + ".png";
       document.querySelector("#player1Name").innerHTML = playerName
       player1Animation.play()
     }
 
     function showPlayer2(playerName) {
-      // TODO
-      document.querySelector("#player2Image").src = "images/" + "profile.jpg";
+      document.querySelector("#player2Image").src = "images/output/" + playerName.toLowerCase() + ".png";
       document.querySelector("#player2Name").innerHTML = playerName
       player2Animation.play()
     }
@@ -91,8 +89,8 @@
     }
 
     function nextTeam() {
-      document.querySelector("#player2Image").src = "images/white.jpg";
-      document.querySelector("#player1Image").src = "images/white.jpg";
+      document.querySelector("#player2Image").src = "images/output/white.png";
+      document.querySelector("#player1Image").src = "images/output/white.png";
       document.querySelector("#player2Name").innerHTML = "";
       document.querySelector("#player1Name").innerHTML = "";
 
