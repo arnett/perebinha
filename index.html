@@ -1,0 +1,118 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Perebinha</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <center>
+    <div class="team-names">
+      <table width="80%">
+        <tr>
+          <center><td>
+            <img id="player1Image" src="images/white.jpg" />
+            <p id="player1Name"></p>
+          </td></center>
+          <center><td>
+            <img id="player2Image" src="images/white.jpg" />
+            <p id="player2Name"></p>
+          </td></center>
+      </table>
+    </div>
+  </center>
+
+  <center>
+    <div class="actions">
+      <button class="big-btn" onclick="nextTeam()">Proxima Dupla</button>
+    </div>
+  </center>
+
+  <center>
+    <div>
+      <pre>
+        <p id="board"></p>
+      </pre>
+    </div>
+  </center>
+  <script src="node_modules/animejs/lib/anime.min.js"></script>
+  <script>
+    const ANIMATION_DURATION = 100;
+    const SLEEP_TIME = 40;
+
+    const GRUPO_A = ["WALLACE", "TAM", "LEVI", "BOLINHA", "RAIMUNDO", "VERTINHO", "BRUNO", "LINO", "RONALDO", "EMANUEL_CANTOR"]
+    const GRUPO_B = ["RUFINO", "ADRIANO", "SAMIR", "EVERTON", "RENATO", "ALMIR", "SEU LEO", "PEDRO", "ANDERSON", "MANEL"]
+
+    const player1Animation = anime({
+      targets: '#player1Image',
+      rotate: '1turn',
+      duration: ANIMATION_DURATION,
+      autoplay: false
+    });
+
+    const player2Animation = anime({
+      targets: '#player2Image',
+      rotate: '1turn',
+      duration: ANIMATION_DURATION,
+      autoplay: false
+    });
+
+    function toggleButton() {
+      const button = document.querySelector('button');
+      button.disabled = !button.disabled;
+    }
+
+    function disableButton() {
+      const button = document.querySelector('button');
+      button.disabled = true;
+    }
+
+    function showPlayer1(playerName) {
+      // TODO
+      document.querySelector("#player1Image").src = "images/" + "profile.jpg";
+      document.querySelector("#player1Name").innerHTML = playerName
+      player1Animation.play()
+    }
+
+    function showPlayer2(playerName) {
+      // TODO
+      document.querySelector("#player2Image").src = "images/" + "profile.jpg";
+      document.querySelector("#player2Name").innerHTML = playerName
+      player2Animation.play()
+    }
+
+    function addToBoard(player1, player2) {
+      document.querySelector("#board").innerHTML = document.querySelector("#board").innerHTML + player1 + " e " + player2 + "\n";
+    }
+
+    function nextTeam() {
+      document.querySelector("#player2Image").src = "images/white.jpg";
+      document.querySelector("#player1Image").src = "images/white.jpg";
+      document.querySelector("#player2Name").innerHTML = "";
+      document.querySelector("#player1Name").innerHTML = "";
+
+      toggleButton();
+
+      index_jogador_a = Math.floor(Math.random() * GRUPO_A.length);
+      index_jogador_b = Math.floor(Math.random() * GRUPO_B.length);
+
+      jogador_a = GRUPO_A.splice(index_jogador_a, 1)[0];
+      jogador_b = GRUPO_B.splice(index_jogador_b, 1)[0];
+
+      if (GRUPO_A.length > 0) {
+        setTimeout(toggleButton, ANIMATION_DURATION + SLEEP_TIME + ANIMATION_DURATION + 200);
+      }
+
+      showPlayer1(jogador_a);
+      setTimeout(showPlayer2, ANIMATION_DURATION + SLEEP_TIME, jogador_b);
+
+      setTimeout(addToBoard, ANIMATION_DURATION + SLEEP_TIME, jogador_a, jogador_b);
+    }
+  </script>
+</body>
+</html>
